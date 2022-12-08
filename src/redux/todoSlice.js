@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+//slice is a collection of reducers and actions
 const todoSlice = createSlice({
   name: "todos",
   initialState: [
