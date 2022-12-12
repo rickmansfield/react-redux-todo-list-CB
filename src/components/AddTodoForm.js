@@ -10,7 +10,9 @@ const AddTodoForm = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     console.log("user entered: " + value);
+    if(value){
     dispatch(addTodoAsync({ title: value }));
+    };
   };
 
   return (
