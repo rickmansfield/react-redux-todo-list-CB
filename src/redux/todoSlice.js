@@ -1,4 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// a Thunk is a function that returns another function
+export const getTodosAsync = createAsyncThunk(
+  'todos/getTodosAsync',
+  async () => {
+    const response = await fetch('http://localhost:7000/todos');
+    if (response.ok) {
+      const todos = await response.json();
+      return { todos };
+    }
+  }
+);
 //slice is a collection of reducers and actions
 const todoSlice = createSlice({
   name: "todos",
@@ -32,6 +43,15 @@ const todoSlice = createSlice({
     // deleteTodo: (state, action) => {
     //   return state.filter((todo) => todo.id !== action.payload.id);
     // }
+  },
+  extraReducers: {
+    [getTodosAsync.pending]: (state, action) => {
+      console.log('loading todos...');
+    },
+    [getTodosAsync.fulfilled]: (state, action) => {
+      console.log('todos loaded YAAAAY!');
+      return action.payload.todos;
+    }
   }
 });
 export const {
