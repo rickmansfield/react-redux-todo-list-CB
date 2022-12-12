@@ -22,8 +22,8 @@ export const addTodoAsync = createAsyncThunk(
     body: JSON.stringify({title: payload.title})
   });
   if (response.ok) {
-    const newTodo = await response.json();
-    return { newTodo };
+    const todo = await response.json();
+    return { todo };
   }
 });
 //slice is a collection of reducers and actions
@@ -69,7 +69,7 @@ const todoSlice = createSlice({
       return action.payload.todos;
     },
     [addTodoAsync.fulfilled]: (state, action) => {
-      state.push(action.payload.newTodo);
+      state.push(action.payload.todo);
     }
   }
 });
