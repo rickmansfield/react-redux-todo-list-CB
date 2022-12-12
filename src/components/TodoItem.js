@@ -6,7 +6,7 @@ import { toggleCompleteAsync, deleteTodoAsync } from '../redux/todoSlice';
 const TodoItem = ({ id, title, completed }) => {
   const dispatch = useDispatch();
   
-  const handleCompleteClick = () => { 
+  const handleCheckboxClick = () => { 
     dispatch(toggleCompleteAsync({ id, completed: !completed }));
   };
 
@@ -17,10 +17,11 @@ const TodoItem = ({ id, title, completed }) => {
 		<li className={`list-group-item ${completed && 'list-group-item-success'}`}>
 			<div className='d-flex justify-content-between'>
 				<span className='d-flex align-items-center'>
-          <input type='checkbox'
+          <input
+            type='checkbox'
             className='mr-3'
             checked={completed}
-            onChange={handleCompleteClick}
+            onChange={handleCheckboxClick}
           ></input>
 					{title}
 				</span>
