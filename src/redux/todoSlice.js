@@ -28,6 +28,10 @@ const todoSlice = createSlice({
       //remove the todo from the array
       state.splice(index, 1);
     }
+    // alternative syntax to deleteTodo
+    // deleteTodo: (state, action) => {
+    //   return state.filter((todo) => todo.id !== action.payload.id);
+    // }
   }
 });
 export const {
