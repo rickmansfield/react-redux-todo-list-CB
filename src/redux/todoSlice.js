@@ -21,11 +21,18 @@ const todoSlice = createSlice({
       const index = state.findIndex((todo) => todo.id === action.payload.id);
       //toggle the completed property
       state[index].completed = action.payload.completed;
+    },
+    deleteTodo: (state, action) => {
+      //find the index of the todo that matches the id of the payload
+      const index = state.findIndex((todo) => todo.id === action.payload.id);
+      //remove the todo from the array
+      state.splice(index, 1);
     }
   }
 });
 export const {
   addTodo, 
-  toggleComplete
+  toggleComplete,
+  deleteTodo
 } = todoSlice.actions;
 export default todoSlice.reducer;
